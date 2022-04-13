@@ -98,9 +98,10 @@ def insert_raw_to_warehouse(schema):
     postgre_auth = PostgreSQL(credential['postgresql_warehouse'])
     engine, engine_conn = postgre_auth.connect(conn_type='engine')
 
-    dim_province.to_sql(f'{schema}.dim_province', con=engine, index=False, if_exists='replace')
-    dim_district.to_sql(f'{schema}.dim_district', con=engine, index=False, if_exists='replace')
-    dim_case.to_sql(f'{schema}.dim_case', con=engine, index=False, if_exists='replace')
+    dim_province.to_sql('dim_province', schema=schema, con=engine, index=False, if_exists='append')
+    dim_district.to_sql('dim_district', schema=schema, con=engine, index=False, if_exists='append')
+    dim_case.to_sql('dim_case', schema=schema, con=engine, index=False, if_exists='append')
+
 
     engine.dispose()
 if __name__ == '__main__':
