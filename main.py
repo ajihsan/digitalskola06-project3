@@ -58,7 +58,7 @@ def insert_dim_province(data):
 
 def insert_dim_district(data):
     column_start = ["kode_kab", "kode_prov", "nama_kab"]
-    column_end = ["district_id", "province_id", "province_name"]
+    column_end = ["district_id", "province_id", "district_name"]
 
     data = data[column_start]
     data = data.drop_duplicates(column_start)
