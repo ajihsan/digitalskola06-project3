@@ -9,3 +9,8 @@ class MySQL:
     self.password = cfg['password']
     self.database = cfg['database']
 
+  def connect(self):
+    engine = create_engine('mysql+mysqlconnector://{}:{}@{}:{}/{}'.format(self.username, self.password, self.host, self.port, self.database))
+    engine_conn = engine.connect()
+    print("Connect Engine MySQL")
+    return engine, engine_conn

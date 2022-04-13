@@ -11,3 +11,20 @@ class PostgreSQL:
       self.password = cfg['password']
       self.database = cfg['database']
 
+  def connect(self, conn_type='engine'):
+    if conn_type == 'engine':
+        engine = create_engine('postgresql://{}:{}@{}:{}/{}'.format(self.username, self.password, self.host, self.port, self.database))
+        conn_engine = engine.connect()
+        print("Connect Engine Postgresql")
+        return engine, conn_engine
+    else:
+        conn = connect(
+            user=self.username,
+            password=self.password,
+            host=self.host,
+            port=self.port,
+            database=self.database
+            )
+        cursor = conn.cursor()
+        print("Connect Cursor Postgresql")
+        return conn, cursor
